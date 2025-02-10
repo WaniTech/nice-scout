@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "HelloWorld",
-    "slug": "expo-template-default",
+    "name": "Nice-Scout",
+    "slug": "nice-scout",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -9,13 +9,15 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.andersah24.nicescout"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.andersah24.nicescout"
     },
     "web": {
       "bundler": "metro",
@@ -36,6 +38,18 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "cc0d978c-d9f4-4958-9e9b-03ca9cadcda6"
+      }
+    },
+    "owner": "andersah24",
+    "updates": {
+      "url": "https://u.expo.dev/cc0d978c-d9f4-4958-9e9b-03ca9cadcda6"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
     }
   }
 }
