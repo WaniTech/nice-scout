@@ -33,53 +33,63 @@ export default function ProfilePage() {
     <>
       <Stack.Screen options={{ headerShown: false }} />
       <View style={styles.container}>
-        <Text style={styles.header}>Profile</Text>
-        <TouchableOpacity style={styles.editIcon}>
-          <Ionicons name="create-outline" size={24} color="#555" />
-        </TouchableOpacity>
-        <View style={styles.profileContainer}>
-          <TouchableOpacity onPress={pickImage}>
-            <Image source={{ uri: profileImage }} style={styles.profileImage} />
-          </TouchableOpacity>
-          <Text style={styles.profileName}>Alex Smith</Text>
-          <View style={styles.emailContainer}>
-            <Ionicons name="mail" size={18} color="#555" style={styles.icon} />
-            <Text style={styles.emailText}>alex.smith@example.com</Text>
+        <ScrollView 
+          style={styles.settingsContainer} 
+          contentContainerStyle={{ flexGrow: 1, justifyContent: 'space-between' }}
+        >
+          <View>
+            <Text style={styles.header}>Profile</Text>
+            <TouchableOpacity style={styles.editIcon}>
+              <Ionicons name="create-outline" size={24} color="#555" />
+            </TouchableOpacity>
+            <View style={styles.profileContainer}>
+              <TouchableOpacity onPress={pickImage}>
+                <Image source={{ uri: profileImage }} style={styles.profileImage} />
+              </TouchableOpacity>
+              <Text style={styles.profileName}>Alex Smith</Text>
+              <View style={styles.emailContainer}>
+                <Ionicons name="mail" size={18} color="#555" style={styles.icon} />
+                <Text style={styles.emailText}>alex.smith@example.com</Text>
+              </View>
+            </View>
+
+            <View style={styles.settingItem}>
+              <Text style={styles.settingTitle}>Qualifications</Text>
+              <Text style={styles.settingDescription}>Highlight your skills and experience.</Text>
+              <TouchableOpacity style={styles.arrowButton}>
+                <Text style={styles.arrowText}>›</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.settingItem}>
+              <Text style={styles.settingTitle}>Job Preferences</Text>
+              <Text style={styles.settingDescription}>Save specifics like desired salary and working hours.</Text>
+              <TouchableOpacity style={styles.arrowButton}>
+                <Text style={styles.arrowText}>›</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.settingItem}>
+              <Text style={styles.settingTitle}>Hide Jobs with These Criteria</Text>
+              <Text style={styles.settingDescription}>Manage qualifications or preferences used to hide jobs from your search.</Text>
+              <TouchableOpacity style={styles.arrowButton}>
+                <Text style={styles.arrowText}>›</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.settingItem}>
+              <Text style={styles.settingTitle}>Ready to Work</Text>
+              <Text style={styles.settingDescription}>Inform employers that you can start working as soon as possible.</Text>
+              <TouchableOpacity style={styles.arrowButton}>
+                <Text style={styles.arrowText}>›</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-        <ScrollView style={styles.settingsContainer}>
-          <View style={styles.settingItem}>
-            <Text style={styles.settingTitle}>Qualifications</Text>
-            <Text style={styles.settingDescription}>Highlight your skills and experience.</Text>
-            <TouchableOpacity style={styles.arrowButton}>
-              <Text style={styles.arrowText}>›</Text>
+
+          <View style={styles.signOutContainer}>
+            <TouchableOpacity style={styles.signOutButton} onPress={() => router.replace('/')}> 
+              <Text style={styles.signOutText}>Sign Out</Text>
             </TouchableOpacity>
           </View>
-          <View style={styles.settingItem}>
-            <Text style={styles.settingTitle}>Job Preferences</Text>
-            <Text style={styles.settingDescription}>Save specifics like desired salary and working hours.</Text>
-            <TouchableOpacity style={styles.arrowButton}>
-              <Text style={styles.arrowText}>›</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.settingItem}>
-            <Text style={styles.settingTitle}>Hide Jobs with These Criteria</Text>
-            <Text style={styles.settingDescription}>Manage qualifications or preferences used to hide jobs from your search.</Text>
-            <TouchableOpacity style={styles.arrowButton}>
-              <Text style={styles.arrowText}>›</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.settingItem}>
-            <Text style={styles.settingTitle}>Ready to Work</Text>
-            <Text style={styles.settingDescription}>Inform employers that you can start working as soon as possible.</Text>
-            <TouchableOpacity style={styles.arrowButton}>
-              <Text style={styles.arrowText}>›</Text>
-            </TouchableOpacity>
-          </View>
+
         </ScrollView>
-        <TouchableOpacity style={styles.signOutButton} onPress={() => router.replace('/')}> 
-          <Text style={styles.signOutText}>Sign Out</Text>
-        </TouchableOpacity>
       </View>
     </>
   );
@@ -167,12 +177,16 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: '#555',
   },
+  signOutContainer: {
+    marginTop: 'auto',
+    marginBottom: 20,
+    alignItems: 'center',
+  },
   signOutButton: {
     backgroundColor: '#FF5252',
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 10,
-    marginBottom: 20,
     alignSelf: 'center',
   },
   signOutText: {
