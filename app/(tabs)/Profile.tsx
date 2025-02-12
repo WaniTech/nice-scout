@@ -39,7 +39,10 @@ export default function ProfilePage() {
         >
           <View>
             <Text style={styles.header}>Profile</Text>
-            <TouchableOpacity style={styles.editIcon}>
+            <TouchableOpacity 
+              style={styles.editIcon} 
+              onPress={() => router.replace('/Editprofile')}
+            >
               <Ionicons name="create-outline" size={24} color="#555" />
             </TouchableOpacity>
             <View style={styles.profileContainer}>
@@ -84,12 +87,13 @@ export default function ProfilePage() {
           </View>
 
           <View style={styles.signOutContainer}>
-            <TouchableOpacity style={styles.signOutButton} onPress={() => router.replace('/')}> 
-              <Text style={styles.signOutText}>Sign Out</Text>
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity style={styles.signOutButton} onPress={() => router.replace('/')}> 
+            <Text style={styles.signOutText}>Sign Out</Text>
+          </TouchableOpacity>
+        </View>
 
         </ScrollView>
+
       </View>
     </>
   );
@@ -100,7 +104,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
     padding: 20,
-    paddingBottom: 100,
+    paddingBottom: 40, // Adjusted bottom padding to move sign-out button further down
   },
   header: {
     fontSize: 24,
@@ -178,8 +182,8 @@ const styles = StyleSheet.create({
     color: '#555',
   },
   signOutContainer: {
-    marginTop: 'auto',
-    marginBottom: 20,
+    marginTop: 'auto', // Ensures sign-out button stays at the bottom
+    marginBottom: 30, // Adds space between the sign-out button and the box above
     alignItems: 'center',
   },
   signOutButton: {
