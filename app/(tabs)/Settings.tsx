@@ -12,7 +12,7 @@ export default function SettingsPage() {
     <>
       <Stack.Screen options={{ headerShown: false }} />
       <View style={styles.container}>
-        <Text style={styles.header}>Settings</Text>
+        <Text style={styles.header}>Profile</Text>
         <ScrollView contentContainerStyle={styles.scrollViewContent}>
           <View style={styles.settingItem}>
             <Text style={styles.settingText}>Enable Notifications</Text>

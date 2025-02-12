@@ -1,26 +1,32 @@
 const express = require('express');
 const mongoose = require('mongoose');
-require('dotenv').config();
+const cors = require('cors');
 
 const app = express();
-const port = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.error('MongoDB connection error:', err));
-
+app.use(cors());
 app.use(express.json());
 
-// Example route to fetch jobs
+mongoose.connect('mongodb+srv://andersah24:<db_password>@scout-link.0za7c.mongodb.net/?retryWrites=true&w=majority&appName=scout-link', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+const jobSchema = new mongoose.Schema({
+  title: String,
+  location: String,
+});
+
+const Job = mongoose.model('Job', jobSchema);
+
 app.get('/jobs', async (req, res) => {
   try {
-    const jobs = await JobModel.find(); // Ensure JobModel is defined and imported
+    const jobs = await Job.find();
     res.json(jobs);
-  } catch (error) {
-    res.status(500).json({ message: 'Error fetching jobs' });
+  } catch (err) {
+    res.status(500).send(err);
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
