@@ -46,9 +46,9 @@ export default function TabsLayout() {
           <Ionicons name="mail" size={20} color="#b4b4a0" />
           <Text style={styles.navText}>Message</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navButton} onPress={() => router.replace('/Settings')}>
-          <Ionicons name="settings" size={20} color="#b4b4a0" />
-          <Text style={styles.navText}>Settings</Text>
+        <TouchableOpacity style={styles.navButton} onPress={() => router.replace('/Profile')}>
+          <Ionicons name="person" size={20} color="#b4b4a0" />
+          <Text style={styles.navText}>Profile</Text>
         </TouchableOpacity>
       </View>
     </ThemeProvider>

@@ -1,4 +1,4 @@
-import { Stack, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
@@ -7,7 +7,6 @@ export default function WelcomeScreen() {
 
   return (
     <>
-      <Stack.Screen options={{ headerShown: false, tabBarStyle: { display: 'none' } }} />
       <View style={styles.container}>
         <Text style={styles.header}>Welcome to Scout Link!</Text>
         <Text style={styles.subHeader}>Your platform for finding football coaching opportunities worldwide.</Text>
