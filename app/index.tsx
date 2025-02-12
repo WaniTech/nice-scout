@@ -1,10 +1,9 @@
-import { useNavigation } from '@react-navigation/native';
-import { Stack } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function WelcomeScreen() {
-  const navigation = useNavigation();
+  const router = useRouter();
 
   return (
     <>
@@ -12,7 +11,7 @@ export default function WelcomeScreen() {
       <View style={styles.container}>
         <Text style={styles.header}>Welcome to Scout Link!</Text>
         <Text style={styles.subHeader}>Your platform for finding football coaching opportunities worldwide.</Text>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('CoachDashboard')}>
+        <TouchableOpacity style={styles.button} onPress={() => router.replace('/CoachDashboard')}>
           <Text style={styles.buttonText}>Explore Job Listings</Text>
         </TouchableOpacity>
       </View>
