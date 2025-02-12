@@ -12,7 +12,7 @@ export default function MyJobsPage() {
     <>
       <Stack.Screen options={{ headerShown: false }} />
       <View style={styles.container}>
-        <Text style={styles.header}>Message!</Text>
+        <Text style={styles.header}>Message</Text>
         <ScrollView>
         </ScrollView>
       </View>
