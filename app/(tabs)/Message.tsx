@@ -1,20 +1,68 @@
+import { Ionicons } from '@expo/vector-icons';
 import { Stack, useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-export default function MyJobsPage() {
+export default function MessagePage() {
   const router = useRouter();
-  const [notificationsEnabled, setNotificationsEnabled] = useState(true);
-  const [darkModeEnabled, setDarkModeEnabled] = useState(false);
-  const [locationAccessEnabled, setLocationAccessEnabled] = useState(true);
+  const [messages, setMessages] = useState([
+    { id: '1', text: 'Hello! Are you available for an interview?' },
+    { id: '2', text: 'Yes, I am available tomorrow.' },
+    { id: '3', text: 'Great! Let\'s schedule it for 10 AM.' },
+  ]);
+  const [newMessage, setNewMessage] = useState('');
+
+  const handleSendMessage = () => {
+    if (newMessage.trim()) {
+      setMessages(prevMessages => [...prevMessages, { id: Date.now().toString(), text: newMessage }]);
+      setNewMessage('');
+    }
+  };
 
   return (
     <>
       <Stack.Screen options={{ headerShown: false }} />
       <View style={styles.container}>
-        <Text style={styles.header}>Message</Text>
-        <ScrollView>
-        </ScrollView>
+        <Text style={styles.header}>Messages</Text>
+        <FlatList
+          data={messages}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => (
+            <View style={styles.messageBubble}>
+              <Text style={styles.messageText}>{item.text}</Text>
+            </View>
+          )}
+          contentContainerStyle={styles.messageContainer}
+        />
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.textInput}
+            value={newMessage}
+            onChangeText={setNewMessage}
+            placeholder="Type a message..."
+          />
+          <TouchableOpacity style={styles.sendButton} onPress={handleSendMessage}>
+            <Text style={styles.sendButtonText}>Send</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={styles.bottomNav}>
+        <TouchableOpacity style={styles.navButton} onPress={() => router.replace('/CoachDashboard')}>
+          <Ionicons name="home" size={20} color="#b4b4a0" />
+          <Text style={styles.navText}>Home</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navButton} onPress={() => router.replace('/Myjobs')}>
+          <Ionicons name="briefcase" size={20} color="#b4b4a0" />
+          <Text style={styles.navText}>My Jobs</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navButton} onPress={() => router.replace('/Message')}>
+          <Ionicons name="mail" size={20} color="#b4b4a0" />
+          <Text style={styles.navText}>Message</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navButton} onPress={() => router.replace('/Settings')}>
+          <Ionicons name="settings" size={20} color="#b4b4a0" />
+          <Text style={styles.navText}>Settings</Text>
+        </TouchableOpacity>
       </View>
     </>
   );
@@ -25,6 +73,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
     padding: 20,
+    paddingBottom: 70, // Adjusted to fit the bottom nav
   },
   header: {
     fontSize: 32,
@@ -32,15 +81,66 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: 'center',
   },
-  settingItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 15,
-    borderBottomWidth: 1,
-    borderColor: '#E0E0E0',
+  messageContainer: {
+    flexGrow: 1,
+    paddingBottom: 20,
   },
-  settingText: {
-    fontSize: 18,
+  messageBubble: {
+    backgroundColor: '#F0F0F0',
+    padding: 15,
+    borderRadius: 10,
+    marginBottom: 10,
+    alignSelf: 'flex-start',
+  },
+  messageText: {
+    fontSize: 16,
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderTopWidth: 1,
+    borderColor: '#E0E0E0',
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    backgroundColor: '#FFF',
+  },
+  textInput: {
+    flex: 1,
+    height: 40,
+    borderWidth: 1,
+    borderColor: '#CCC',
+    borderRadius: 20,
+    paddingHorizontal: 15,
+    marginRight: 10,
+  },
+  sendButton: {
+    backgroundColor: '#4CAF50',
+    borderRadius: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+  },
+  sendButtonText: {
+    color: '#FFF',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  bottomNav: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: '#121212',
+    borderTopWidth: 1,
+    borderColor: '#E0E0E0',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingVertical: 10,
+  },
+  navButton: {
+    alignItems: 'center',
+  },
+  navText: {
+    fontSize: 10,
+    color: '#b4b4a0',
   },
 });
