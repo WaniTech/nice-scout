@@ -1,16 +1,52 @@
+import { Ionicons } from '@expo/vector-icons';
+import * as ImagePicker from 'expo-image-picker';
 import { Stack, useRouter } from 'expo-router';
-import React from 'react';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-export default function SettingsPage() {
+export default function ProfilePage() {
   const router = useRouter();
+  const [profileImage, setProfileImage] = useState('https://randomuser.me/api/portraits/men/32.jpg');
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (status !== 'granted') {
+        alert('Permission to access media library is required!');
+      }
+    })();
+  }, []);
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 1,
+    });
+    if (!result.canceled) {
+      setProfileImage(result.assets[0].uri);
+    }
+  };
 
   return (
     <>
       <Stack.Screen options={{ headerShown: false }} />
       <View style={styles.container}>
         <Text style={styles.header}>Profile</Text>
-
+        <TouchableOpacity style={styles.editIcon}>
+          <Ionicons name="create-outline" size={24} color="#555" />
+        </TouchableOpacity>
+        <View style={styles.profileContainer}>
+          <TouchableOpacity onPress={pickImage}>
+            <Image source={{ uri: profileImage }} style={styles.profileImage} />
+          </TouchableOpacity>
+          <Text style={styles.profileName}>Alex Smith</Text>
+          <View style={styles.emailContainer}>
+            <Ionicons name="mail" size={18} color="#555" style={styles.icon} />
+            <Text style={styles.emailText}>alex.smith@example.com</Text>
+          </View>
+        </View>
         <ScrollView style={styles.settingsContainer}>
           <View style={styles.settingItem}>
             <Text style={styles.settingTitle}>Qualifications</Text>
@@ -19,7 +55,6 @@ export default function SettingsPage() {
               <Text style={styles.arrowText}>›</Text>
             </TouchableOpacity>
           </View>
-
           <View style={styles.settingItem}>
             <Text style={styles.settingTitle}>Job Preferences</Text>
             <Text style={styles.settingDescription}>Save specifics like desired salary and working hours.</Text>
@@ -27,7 +62,6 @@ export default function SettingsPage() {
               <Text style={styles.arrowText}>›</Text>
             </TouchableOpacity>
           </View>
-
           <View style={styles.settingItem}>
             <Text style={styles.settingTitle}>Hide Jobs with These Criteria</Text>
             <Text style={styles.settingDescription}>Manage qualifications or preferences used to hide jobs from your search.</Text>
@@ -35,7 +69,6 @@ export default function SettingsPage() {
               <Text style={styles.arrowText}>›</Text>
             </TouchableOpacity>
           </View>
-
           <View style={styles.settingItem}>
             <Text style={styles.settingTitle}>Ready to Work</Text>
             <Text style={styles.settingDescription}>Inform employers that you can start working as soon as possible.</Text>
@@ -44,7 +77,6 @@ export default function SettingsPage() {
             </TouchableOpacity>
           </View>
         </ScrollView>
-        
         <TouchableOpacity style={styles.signOutButton} onPress={() => router.replace('/')}> 
           <Text style={styles.signOutText}>Sign Out</Text>
         </TouchableOpacity>
@@ -58,13 +90,52 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
     padding: 20,
-    paddingBottom: 100, // Adjusted to fit the sign-out button above the bottom nav
+    paddingBottom: 100,
   },
   header: {
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
     marginVertical: 20,
+  },
+  editIcon: {
+    position: 'absolute',
+    right: 20,
+    top: 20,
+  },
+  profileContainer: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  profileImage: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    marginBottom: 10,
+    borderWidth: 2,
+    borderColor: '#ccc',
+  },
+  profileName: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  emailContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FFFFF',
+    padding: 12,
+    borderRadius: 8,
+    width: '80%',
+    marginTop: 10,
+    justifyContent: 'center',
+  },
+  icon: {
+    marginRight: 10,
+  },
+  emailText: {
+    fontSize: 16,
+    color: '#333',
   },
   settingsContainer: {
     marginTop: 10,
@@ -101,7 +172,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 10,
-    marginBottom: 20, // Positioned above the bottom nav
+    marginBottom: 20,
     alignSelf: 'center',
   },
   signOutText: {
