@@ -10,7 +10,7 @@ export default function CoachDashboard() {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/jobs');
+        const response = await axios.get('mongodb+srv://andersah24:<db_password>@scout-link.0za7c.mongodb.net/?retryWrites=true&w=majority&appName=scout-link');
         setJobListings(response.data);
       } catch (error) {
         console.error('Error fetching job listings:', error);
