@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     paddingBottom: 40, // Adjusted bottom padding to move sign-out button further down
   },
   header: {
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: 'bold',
     textAlign: 'center',
     marginVertical: 20,

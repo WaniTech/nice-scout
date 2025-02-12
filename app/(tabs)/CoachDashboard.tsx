@@ -1,6 +1,6 @@
 import { Stack, useRouter } from 'expo-router';
 import React from 'react';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 const jobListings = [
   { id: 1, club: 'Manchester United', role: 'Head Coach' },
@@ -32,8 +32,12 @@ export default function SettingsPage() {
     <>
       <Stack.Screen options={{ headerShown: false }} />
       <View style={styles.container}>
-        <Text style={styles.header}>Job Listings</Text>
         <ScrollView style={styles.settingsContainer}>
+        <Text style={styles.header}>Job Listings</Text>
+          <View style={styles.inputContainer}>
+            <TextInput style={styles.searchInput} placeholder="Search jobs..." />
+            <TextInput style={styles.locationInput} placeholder="Enter location..." />
+          </View>
           {jobListings.map(job => (
             <View key={job.id} style={styles.settingItem}>
               <Text style={styles.settingTitle}>{job.club}</Text>
@@ -44,7 +48,6 @@ export default function SettingsPage() {
             </View>
           ))}
         </ScrollView>
-        
       </View>
     </>
   );
@@ -55,16 +58,36 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
     padding: 20,
-    paddingBottom: 100, // Adjusted to fit the sign-out button above the bottom nav
+    paddingBottom: 100,
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10,
+  },
+  searchInput: {
+    flex: 1,
+    backgroundColor: '#F5F5F5',
+    paddingHorizontal: 10,
+    borderRadius: 10,
+    height: 40,
+    marginRight: 10,
+  },
+  locationInput: {
+    flex: 1,
+    backgroundColor: '#F5F5F5',
+    paddingHorizontal: 10,
+    borderRadius: 10,
+    height: 40,
   },
   header: {
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginVertical: 20,
+    marginVertical: 10,
   },
   settingsContainer: {
-    marginTop: 10,
+    flexGrow: 1,
   },
   settingItem: {
     backgroundColor: '#FFFFFF',
@@ -93,5 +116,4 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: '#555',
   },
-
 });

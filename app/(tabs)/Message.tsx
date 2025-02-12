@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     paddingBottom: 70, // Adjusted to fit the bottom nav
   },
   header: {
-    fontSize: 32,
+    fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 20,
     textAlign: 'center',
