@@ -8,7 +8,6 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function TabsLayout() {
@@ -30,8 +29,20 @@ export default function TabsLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack screenOptions={{ headerShown: false }} />
-      <StatusBar style="auto" />
+      <Stack
+        screenOptions={{
+          headerShown: true,
+          headerTransparent: true,
+          headerTitle: '',
+          headerStyle: {
+            backgroundColor: 'transparent',
+            elevation: 0,
+            shadowOpacity: 0,
+            borderBottomWidth: 0,
+          },
+        }}
+      />
+      <StatusBar style="dark" translucent />
 
       <View style={styles.bottomNav}>
         <TouchableOpacity style={styles.navButton} onPress={() => router.replace('/CoachDashboard')}>
@@ -66,13 +77,13 @@ const styles = StyleSheet.create({
     borderColor: '#E0E0E0',
     flexDirection: 'row',
     justifyContent: 'space-around',
-    paddingVertical: 12,  // Reduced padding to make nav smaller
+    paddingVertical: 12,
   },
   navButton: {
     alignItems: 'center',
   },
   navText: {
-    fontSize: 12,  // Reduced text size
+    fontSize: 12,
     color: '#b4b4a0',
   },
 });

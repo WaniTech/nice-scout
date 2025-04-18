@@ -1,68 +1,82 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Stack, useRouter } from 'expo-router';
-import React, { useState } from 'react';
-import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import React, { useRef } from 'react';
+import {
+  Animated,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
+} from 'react-native';
+
+const mockMessages = [
+  { id: '1', club: 'FC Barcelona', message: 'Are you available for a trial?', time: '09:45', icon: 'football' },
+  { id: '2', club: 'Manchester United', message: 'We loved your profile!', time: '08:30', icon: 'trophy' },
+  { id: '3', club: 'Juventus', message: 'Can we schedule an interview?', time: 'Yesterday', icon: 'shield' },
+  { id: '4', club: 'Paris SG', message: 'Join our youth development?', time: 'Yesterday', icon: 'star' },
+  { id: '5', club: 'Ajax', message: 'We’d like to talk more.', time: 'Mon', icon: 'medal' },
+  { id: '6', club: 'Bayern Munich', message: 'Let’s have a quick call.', time: 'Sun', icon: 'trophy' },
+  { id: '7', club: 'Real Madrid', message: 'You are a great fit!', time: 'Sat', icon: 'football-outline' },
+  { id: '8', club: 'AC Milan', message: 'Ready for the next step?', time: 'Fri', icon: 'people' },
+  { id: '9', club: 'Chelsea FC', message: 'We’re looking for a coach.', time: 'Thu', icon: 'person-circle' },
+  { id: '10', club: 'Dortmund', message: 'Excited to connect with you!', time: 'Wed', icon: 'chatbox' },
+];
 
 export default function MessagePage() {
   const router = useRouter();
-  const [messages, setMessages] = useState([
-    { id: '1', text: 'Hello! Are you available for an interview?' },
-    { id: '2', text: 'Yes, I am available tomorrow.' },
-    { id: '3', text: 'Great! Let\'s schedule it for 10 AM.' },
-  ]);
-  const [newMessage, setNewMessage] = useState('');
+  const scrollY = useRef(new Animated.Value(0)).current;
 
-  const handleSendMessage = () => {
-    if (newMessage.trim()) {
-      setMessages(prevMessages => [...prevMessages, { id: Date.now().toString(), text: newMessage }]);
-      setNewMessage('');
-    }
-  };
+  const headerOpacity = scrollY.interpolate({
+    inputRange: [0, 40],
+    outputRange: [1, 0],
+    extrapolate: 'clamp',
+  });
+
+  const headerTranslate = scrollY.interpolate({
+    inputRange: [0, 40],
+    outputRange: [0, -20],
+    extrapolate: 'clamp',
+  });
 
   return (
     <>
       <Stack.Screen options={{ headerShown: false }} />
       <View style={styles.container}>
-        <Text style={styles.header}>Messages</Text>
-        <FlatList
-          data={messages}
-          keyExtractor={item => item.id}
-          renderItem={({ item }) => (
-            <View style={styles.messageBubble}>
-              <Text style={styles.messageText}>{item.text}</Text>
-            </View>
+        <Animated.Text
+          style={[
+            styles.header,
+            {
+              opacity: headerOpacity,
+              transform: [{ translateY: headerTranslate }],
+            },
+          ]}
+        >
+          Messages
+        </Animated.Text>
+
+        <Animated.FlatList
+          data={mockMessages}
+          keyExtractor={(item) => item.id}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+            { useNativeDriver: true }
           )}
-          contentContainerStyle={styles.messageContainer}
+          contentContainerStyle={{ paddingTop: 10 }}
+          renderItem={({ item }) => (
+            <TouchableOpacity style={styles.chatRow} onPress={() => router.push(`/MessageDetail/${item.id}`)}>
+              <View style={styles.avatar}>
+                <Ionicons name={item.icon} size={30} color="#555" />
+              </View>
+              <View style={styles.chatInfo}>
+                <View style={styles.chatHeader}>
+                  <Text style={styles.clubName}>{item.club}</Text>
+                  <Text style={styles.time}>{item.time}</Text>
+                </View>
+                <Text style={styles.message}>{item.message}</Text>
+              </View>
+            </TouchableOpacity>
+          )}
         />
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.textInput}
-            value={newMessage}
-            onChangeText={setNewMessage}
-            placeholder="Type a message..."
-          />
-          <TouchableOpacity style={styles.sendButton} onPress={handleSendMessage}>
-            <Text style={styles.sendButtonText}>Send</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-      <View style={styles.bottomNav}>
-        <TouchableOpacity style={styles.navButton} onPress={() => router.replace('/CoachDashboard')}>
-          <Ionicons name="home" size={20} color="#b4b4a0" />
-          <Text style={styles.navText}>Home</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navButton} onPress={() => router.replace('/Myjobs')}>
-          <Ionicons name="briefcase" size={20} color="#b4b4a0" />
-          <Text style={styles.navText}>My Jobs</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navButton} onPress={() => router.replace('/Message')}>
-          <Ionicons name="mail" size={20} color="#b4b4a0" />
-          <Text style={styles.navText}>Message</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.navButton} onPress={() => router.replace('/Settings')}>
-          <Ionicons name="settings" size={20} color="#b4b4a0" />
-          <Text style={styles.navText}>Settings</Text>
-        </TouchableOpacity>
       </View>
     </>
   );
@@ -71,76 +85,52 @@ export default function MessagePage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
-    padding: 20,
-    paddingBottom: 70, // Adjusted to fit the bottom nav
+    backgroundColor: '#FFF',
+    paddingTop: 60,
+    paddingHorizontal: 20,
   },
   header: {
     fontSize: 30,
     fontWeight: 'bold',
-    marginBottom: 20,
     textAlign: 'center',
-  },
-  messageContainer: {
-    flexGrow: 1,
-    paddingBottom: 20,
-  },
-  messageBubble: {
-    backgroundColor: '#F0F0F0',
-    padding: 15,
-    borderRadius: 10,
     marginBottom: 10,
-    alignSelf: 'flex-start',
   },
-  messageText: {
-    fontSize: 16,
-  },
-  inputContainer: {
+  chatRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderTopWidth: 1,
-    borderColor: '#E0E0E0',
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    backgroundColor: '#FFF',
+    paddingVertical: 14,
+    borderBottomWidth: 1,
+    borderBottomColor: '#EEE',
   },
-  textInput: {
+  avatar: {
+    width: 48,
+    height: 48,
+    backgroundColor: '#E5E5E5',
+    borderRadius: 24,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 14,
+  },
+  chatInfo: {
     flex: 1,
-    height: 40,
-    borderWidth: 1,
-    borderColor: '#CCC',
-    borderRadius: 20,
-    paddingHorizontal: 15,
-    marginRight: 10,
+    justifyContent: 'center',
   },
-  sendButton: {
-    backgroundColor: '#4CAF50',
-    borderRadius: 20,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+  chatHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 4,
   },
-  sendButtonText: {
-    color: '#FFF',
+  clubName: {
     fontSize: 16,
     fontWeight: 'bold',
+    color: '#000',
   },
-  bottomNav: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: '#121212',
-    borderTopWidth: 1,
-    borderColor: '#E0E0E0',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingVertical: 10,
+  time: {
+    fontSize: 12,
+    color: '#888',
   },
-  navButton: {
-    alignItems: 'center',
-  },
-  navText: {
-    fontSize: 10,
-    color: '#b4b4a0',
+  message: {
+    fontSize: 14,
+    color: '#555',
   },
 });

@@ -1,5 +1,5 @@
 import * as ImagePicker from 'expo-image-picker';
-import { Stack, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
@@ -34,8 +34,7 @@ export default function EditProfilePage() {
 
   return (
     <>
-      <Stack.Screen options={{ headerShown: false }} />
-      <View style={styles.container}>
+           <View style={styles.container}>
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
           <Text style={styles.header}>Edit Profile</Text>
           <View style={styles.profileContainer}>
