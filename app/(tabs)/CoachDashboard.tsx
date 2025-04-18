@@ -1,5 +1,5 @@
 import { Stack, useRouter } from 'expo-router';
-import React from 'react';
+import React, { useState } from 'react';
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 const jobListings = [
@@ -27,18 +27,36 @@ const jobListings = [
 
 export default function SettingsPage() {
   const router = useRouter();
+  const [searchText, setSearchText] = useState('');
+  const [locationText, setLocationText] = useState('');
+
+  const filteredJobs = jobListings.filter(
+    (job) =>
+      job.role.toLowerCase().includes(searchText.toLowerCase()) &&
+      job.club.toLowerCase().includes(locationText.toLowerCase())
+  );
 
   return (
     <>
       <Stack.Screen options={{ headerShown: false }} />
       <View style={styles.container}>
         <ScrollView style={styles.settingsContainer}>
-        <Text style={styles.header}>Job Listings</Text>
+          <Text style={styles.header}>Job Listings</Text>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.searchInput} placeholder="Search jobs..." />
-            <TextInput style={styles.locationInput} placeholder="Enter location..." />
+            <TextInput
+              style={styles.searchInput}
+              placeholder="Search jobs..."
+              value={searchText}
+              onChangeText={setSearchText}
+            />
+            <TextInput
+              style={styles.locationInput}
+              placeholder="Enter location..."
+              value={locationText}
+              onChangeText={setLocationText}
+            />
           </View>
-          {jobListings.map(job => (
+          {filteredJobs.map((job) => (
             <View key={job.id} style={styles.settingItem}>
               <Text style={styles.settingTitle}>{job.club}</Text>
               <Text style={styles.settingDescription}>{job.role}</Text>
@@ -47,6 +65,11 @@ export default function SettingsPage() {
               </TouchableOpacity>
             </View>
           ))}
+          {filteredJobs.length === 0 && (
+            <Text style={{ textAlign: 'center', marginTop: 20, color: '#888' }}>
+              No jobs found.
+            </Text>
+          )}
         </ScrollView>
       </View>
     </>

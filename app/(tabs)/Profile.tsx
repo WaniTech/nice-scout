@@ -2,7 +2,14 @@ import { Ionicons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import { Stack, useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -33,18 +40,19 @@ export default function ProfilePage() {
     <>
       <Stack.Screen options={{ headerShown: false }} />
       <View style={styles.container}>
-        <ScrollView 
-          style={styles.settingsContainer} 
+        <ScrollView
+          style={styles.settingsContainer}
           contentContainerStyle={{ flexGrow: 1, justifyContent: 'space-between' }}
         >
           <View>
             <Text style={styles.header}>Profile</Text>
-            <TouchableOpacity 
-              style={styles.editIcon} 
+            <TouchableOpacity
+              style={styles.editIcon}
               onPress={() => router.replace('/Editprofile')}
             >
               <Ionicons name="create-outline" size={24} color="#555" />
             </TouchableOpacity>
+
             <View style={styles.profileContainer}>
               <TouchableOpacity onPress={pickImage}>
                 <Image source={{ uri: profileImage }} style={styles.profileImage} />
@@ -56,44 +64,37 @@ export default function ProfilePage() {
               </View>
             </View>
 
-            <View style={styles.settingItem}>
+            <TouchableOpacity style={styles.settingItem} onPress={() => router.push('/Profile/Qualifications')}>
               <Text style={styles.settingTitle}>Qualifications</Text>
               <Text style={styles.settingDescription}>Highlight your skills and experience.</Text>
-              <TouchableOpacity style={styles.arrowButton}>
-                <Text style={styles.arrowText}>›</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.settingItem}>
+              <Text style={styles.arrowText}>›</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.settingItem} onPress={() => router.push('/Profile/JobPreferences')}>
               <Text style={styles.settingTitle}>Job Preferences</Text>
               <Text style={styles.settingDescription}>Save specifics like desired salary and working hours.</Text>
-              <TouchableOpacity style={styles.arrowButton}>
-                <Text style={styles.arrowText}>›</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.settingItem}>
+              <Text style={styles.arrowText}>›</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.settingItem} onPress={() => router.push('/Profile/HiddenCriteria')}>
               <Text style={styles.settingTitle}>Hide Jobs with These Criteria</Text>
               <Text style={styles.settingDescription}>Manage qualifications or preferences used to hide jobs from your search.</Text>
-              <TouchableOpacity style={styles.arrowButton}>
-                <Text style={styles.arrowText}>›</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.settingItem}>
+              <Text style={styles.arrowText}>›</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.settingItem} onPress={() => router.push('/Profile/ReadyToWork')}>
               <Text style={styles.settingTitle}>Ready to Work</Text>
               <Text style={styles.settingDescription}>Inform employers that you can start working as soon as possible.</Text>
-              <TouchableOpacity style={styles.arrowButton}>
-                <Text style={styles.arrowText}>›</Text>
-              </TouchableOpacity>
-            </View>
+              <Text style={styles.arrowText}>›</Text>
+            </TouchableOpacity>
           </View>
 
           <View style={styles.signOutContainer}>
-          <TouchableOpacity style={styles.signOutButton} onPress={() => router.replace('/')}> 
-            <Text style={styles.signOutText}>Sign Out</Text>
-          </TouchableOpacity>
-        </View>
-
+            <TouchableOpacity style={styles.signOutButton} onPress={() => router.replace('/')}>
+              <Text style={styles.signOutText}>Sign Out</Text>
+            </TouchableOpacity>
+          </View>
         </ScrollView>
-
       </View>
     </>
   );
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
     padding: 20,
-    paddingBottom: 40, // Adjusted bottom padding to move sign-out button further down
+    paddingBottom: 40,
   },
   header: {
     fontSize: 30,
@@ -137,7 +138,6 @@ const styles = StyleSheet.create({
   emailContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFFFF',
     padding: 12,
     borderRadius: 8,
     width: '80%',
@@ -171,19 +171,17 @@ const styles = StyleSheet.create({
     color: '#555',
     marginBottom: 5,
   },
-  arrowButton: {
+  arrowText: {
     position: 'absolute',
     right: 10,
     top: '50%',
-    transform: [{ translateY: -12 }],
-  },
-  arrowText: {
     fontSize: 24,
     color: '#555',
+    transform: [{ translateY: -12 }],
   },
   signOutContainer: {
-    marginTop: 'auto', // Ensures sign-out button stays at the bottom
-    marginBottom: 30, // Adds space between the sign-out button and the box above
+    marginTop: 'auto',
+    marginBottom: 30,
     alignItems: 'center',
   },
   signOutButton: {

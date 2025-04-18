@@ -1,8 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Stack, useRouter } from 'expo-router';
-import React, { useRef } from 'react';
+import React from 'react';
 import {
-  Animated,
+  FlatList,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -24,44 +24,15 @@ const mockMessages = [
 
 export default function MessagePage() {
   const router = useRouter();
-  const scrollY = useRef(new Animated.Value(0)).current;
-
-  const headerOpacity = scrollY.interpolate({
-    inputRange: [0, 40],
-    outputRange: [1, 0],
-    extrapolate: 'clamp',
-  });
-
-  const headerTranslate = scrollY.interpolate({
-    inputRange: [0, 40],
-    outputRange: [0, -20],
-    extrapolate: 'clamp',
-  });
 
   return (
     <>
       <Stack.Screen options={{ headerShown: false }} />
       <View style={styles.container}>
-        <Animated.Text
-          style={[
-            styles.header,
-            {
-              opacity: headerOpacity,
-              transform: [{ translateY: headerTranslate }],
-            },
-          ]}
-        >
-          Messages
-        </Animated.Text>
-
-        <Animated.FlatList
+        <FlatList
           data={mockMessages}
           keyExtractor={(item) => item.id}
-          onScroll={Animated.event(
-            [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-            { useNativeDriver: true }
-          )}
-          contentContainerStyle={{ paddingTop: 10 }}
+          contentContainerStyle={styles.contentContainer}
           renderItem={({ item }) => (
             <TouchableOpacity style={styles.chatRow} onPress={() => router.push(`/MessageDetail/${item.id}`)}>
               <View style={styles.avatar}>
@@ -76,6 +47,9 @@ export default function MessagePage() {
               </View>
             </TouchableOpacity>
           )}
+          ListHeaderComponent={
+            <Text style={styles.header}>Messages</Text>
+          }
         />
       </View>
     </>
@@ -88,6 +62,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     paddingTop: 60,
     paddingHorizontal: 20,
+  },
+  contentContainer: {
+    paddingBottom: 100,
   },
   header: {
     fontSize: 30,
