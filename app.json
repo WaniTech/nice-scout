@@ -3,6 +3,7 @@
     "name": "Nice-Scout",
     "slug": "nice-scout",
     "version": "0.5.0",
+    "description": "Scout Link player scouting app",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",

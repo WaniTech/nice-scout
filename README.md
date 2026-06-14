@@ -1,4 +1,4 @@
-# Scout Link - Version 0.5
+# Scout Link - version 0.5
 
 Scout Link is a React Native Expo app for football players who want to manage a scout-facing profile, track trial opportunities, organize media clips, and respond to club messages. The app includes a small Express backend that stores opportunities, applications, media clips, profile updates, preferences, availability, and message replies.
 

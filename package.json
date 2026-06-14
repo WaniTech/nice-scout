@@ -1,5 +1,6 @@
 {
   "name": "nice-scout",
+  "description": "Scout Link player scouting app.",
   "license": "0BSD",
   "main": "expo-router/entry",
   "version": "0.5.0",
