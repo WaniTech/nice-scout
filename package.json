@@ -2,7 +2,7 @@
   "name": "nice-scout",
   "license": "0BSD",
   "main": "expo-router/entry",
-  "version": "52.0.64",
+  "version": "0.5.0",
   "scripts": {
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",

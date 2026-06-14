@@ -1,6 +1,10 @@
-# Scout Link
+# Scout Link - Version 0.5
 
 Scout Link is a React Native Expo app for football players who want to manage a scout-facing profile, track trial opportunities, organize media clips, and respond to club messages. The app includes a small Express backend that stores opportunities, applications, media clips, profile updates, preferences, availability, and message replies.
+
+Version: 0.5
+
+Repository: [WaniTech/nice-scout](https://github.com/WaniTech/nice-scout)
 
 ## Live Demo
 
@@ -69,7 +73,7 @@ The work-hours file must be updated with the actual personal hours before final 
 
 ## Other Repositories
 
-This project is currently contained in this repository. There are no separate frontend or backend repositories.
+This project is currently contained in [WaniTech/nice-scout](https://github.com/WaniTech/nice-scout). There are no separate frontend or backend repositories.
 
 ## Use of Generative Language Models
 
