@@ -34,7 +34,7 @@ Right now you can use the app to:
 
 Work hours are listed in [docs/work-hours.md](docs/work-hours.md).
 
-Please view the work-hours.md in code mode and not as in preview mode.
+Please view the work-hours.md in code mode and not in preview mode.
 
 ## Use of Generative Language Models
 
