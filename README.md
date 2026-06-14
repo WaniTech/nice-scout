@@ -14,6 +14,10 @@ Expo project page: https://expo.dev/@andersah24/nice-scout
 
 Latest published EAS update: https://expo.dev/accounts/andersah24/projects/nice-scout/updates/bf614c06-4335-4503-8e8f-2c2e35125802
 
+Android preview build: https://expo.dev/accounts/andersah24/projects/nice-scout/builds/f56e4376-4b5d-4231-8e47-2db1faaedd1a
+
+Android APK install link: https://expo.dev/artifacts/eas/TCTv0FWZjFdgrzcjNu5iCZqCtUm6GY4GaGHTxi3esvE.apk
+
 The app was published to the `main` EAS Update branch with runtime version `0.5.0`.
 
 ## What You Can Do
