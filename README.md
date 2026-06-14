@@ -8,9 +8,11 @@ Repository: [WaniTech/nice-scout](https://github.com/WaniTech/nice-scout)
 
 ## Live Demo
 
-Expo project/update link: https://u.expo.dev/cc0d978c-d9f4-4958-9e9b-03ca9cadcda6
+Expo project page: https://expo.dev/@andersah24/nice-scout
 
-Before final submission, verify that the Expo link is public and opens the app in Expo Go or the required Expo client. If it has not been published yet, publish an Expo update and replace this link with the public launch link.
+Latest published EAS update: https://expo.dev/accounts/andersah24/projects/nice-scout/updates/1ef4762c-f010-415d-98de-0a466cc62317
+
+The app has been published to the `main` EAS Update branch with runtime version `0.5.0`. Open the Expo project page on a mobile device with Expo Go installed, or use the update page to verify the latest published build.
 
 ## User Instructions
 
