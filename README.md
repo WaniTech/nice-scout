@@ -12,7 +12,7 @@ Backend: `http://localhost:5000`.
 
 Expo project page: https://expo.dev/@andersah24/nice-scout
 
-Latest published EAS update: https://expo.dev/accounts/andersah24/projects/nice-scout/updates/1ef4762c-f010-415d-98de-0a466cc62317
+Latest published EAS update: https://expo.dev/accounts/andersah24/projects/nice-scout/updates/bf614c06-4335-4503-8e8f-2c2e35125802
 
 The app was published to the `main` EAS Update branch with runtime version `0.5.0`.
 
