@@ -20,6 +20,14 @@ Android APK install link: https://expo.dev/artifacts/eas/TCTv0FWZjFdgrzcjNu5iCZq
 
 The app was published to the `main` EAS Update branch with runtime version `0.5.0`.
 
+## QR Codes
+
+| Android preview build | iOS / Expo project |
+| --- | --- |
+| [![Android QR code](https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fexpo.dev%2Faccounts%2Fandersah24%2Fprojects%2Fnice-scout%2Fbuilds%2Ff56e4376-4b5d-4231-8e47-2db1faaedd1a)](https://expo.dev/accounts/andersah24/projects/nice-scout/builds/f56e4376-4b5d-4231-8e47-2db1faaedd1a) | [![iOS QR code](https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fexpo.dev%2Faccounts%2Fandersah24%2Fprojects%2Fnice-scout%2Fupdates%2Fbf614c06-4335-4503-8e8f-2c2e35125802)](https://expo.dev/accounts/andersah24/projects/nice-scout/updates/bf614c06-4335-4503-8e8f-2c2e35125802) |
+
+The Android QR code opens the installable preview build. The iOS QR code opens the latest published Expo update page because no separate iOS install build has been created yet.
+
 ## What You Can Do
 
 Right now you can use the app to:
