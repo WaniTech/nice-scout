@@ -32,10 +32,6 @@ Work hours are listed in [docs/work-hours.md](docs/work-hours.md).
 
 The work-hours file must be updated with the actual personal hours before final submission. It must include the total sum of spent hours.
 
-## Other Repositories
-
-This project is currently contained in [WaniTech/nice-scout](https://github.com/WaniTech/nice-scout). There are no separate frontend or backend repositories.
-
 ## Use of Generative Language Models
 
 Generative AI assistance was used during development for code cleanup, debugging, documentation drafting, and checking project structure. AI-generated suggestions were reviewed before being applied. The project was verified with type checking, linting, frontend tests, and backend tests after the changes.
