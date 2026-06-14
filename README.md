@@ -30,7 +30,7 @@ Right now you can use the app to:
 
 Work hours are listed in [docs/work-hours.md](docs/work-hours.md).
 
-The work-hours file must be updated with the actual personal hours before final submission. It must include the total sum of spent hours.
+Please view the work-hours.md in code mdoe and not as in preview mode.
 
 ## Use of Generative Language Models
 
