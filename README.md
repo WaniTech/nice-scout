@@ -10,23 +10,7 @@ Backend: `http://localhost:5000`.
 
 ## Live Demo
 
-Android live demo public link: https://expo.dev/accounts/andersah24/projects/nice-scout/builds/f56e4376-4b5d-4231-8e47-2db1faaedd1a
-
-Open the public link on an Android device to install and launch the preview build. Do not use `https://expo.dev/@andersah24/nice-scout`; that older Expo project URL returns a 404 for this EAS project.
-
-Latest published EAS update dashboard page: https://expo.dev/accounts/andersah24/projects/nice-scout/updates/bf614c06-4335-4503-8e8f-2c2e35125802
-
-Android APK install link: https://expo.dev/artifacts/eas/TCTv0FWZjFdgrzcjNu5iCZqCtUm6GY4GaGHTxi3esvE.apk
-
-The app was published to the `main` EAS Update branch with runtime version `0.5.0`.
-
-## QR Codes
-
-| Android preview build | EAS update dashboard |
-| --- | --- |
-| [![Android QR code](docs/android-qr.png)](https://expo.dev/accounts/andersah24/projects/nice-scout/builds/f56e4376-4b5d-4231-8e47-2db1faaedd1a) | [![iOS QR code](docs/ios-qr.png)](https://expo.dev/accounts/andersah24/projects/nice-scout/updates/bf614c06-4335-4503-8e8f-2c2e35125802) |
-
-The Android QR code opens the installable preview build. The EAS update QR code opens the latest published update dashboard page for maintainers because no separate iOS install build has been created yet.
+Expo public link: https://expo.dev/@wanitech/nice-scout
 
 ## What You Can Do
 
