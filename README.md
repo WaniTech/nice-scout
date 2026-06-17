@@ -19,7 +19,6 @@ Right now you can use the app to:
 - Edit profile, CV, preferences, and availability
 - Browse trials and jobs
 - Save or update job applications
-- Manage media clips
 - Read messages, reply, and archive them
 
 ## Work Hours
