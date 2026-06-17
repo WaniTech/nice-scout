@@ -6,7 +6,7 @@ Version: 0.5
 
 ## Live Demo
 
-Expo public link: https://expo.dev/@wanitech/nice-scout
+Expo public link: [https://expo.dev/@wanitech/nice-scout](https://nice-scout.expo.app)
 
 ## What You Can Do
 
