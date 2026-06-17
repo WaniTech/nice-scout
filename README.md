@@ -4,10 +4,6 @@ Scout Link is a React Native Expo app for football players who want to manage a 
 
 Version: 0.5
 
-Repository: [WaniTech/nice-scout](https://github.com/WaniTech/nice-scout)
-
-Backend: `http://localhost:5000`.
-
 ## Live Demo
 
 Expo public link: https://expo.dev/@wanitech/nice-scout
