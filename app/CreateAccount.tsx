@@ -45,7 +45,6 @@ export default function CreateAccountScreen() {
     }
 
     setError('');
-    router.replace('/PlayerDashboard');
   };
 
   return (

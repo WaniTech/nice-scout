@@ -1,8 +1,8 @@
 import { colors } from '@/constants/playerPlatform';
 import { useAuth } from '@/contexts/AuthContext';
 import { Ionicons } from '@expo/vector-icons';
-import { useRootNavigationState, useRouter } from 'expo-router';
-import React, { useEffect, useState } from 'react';
+import { useRouter } from 'expo-router';
+import React, { useState } from 'react';
 import {
   ImageBackground,
   KeyboardAvoidingView,
@@ -20,18 +20,11 @@ const heroImage = require('../assets/images/player-hero.png');
 
 export default function LoginScreen() {
   const router = useRouter();
-  const rootNavigationState = useRootNavigationState();
-  const { currentUser, demoEmail, demoPassword, signIn, signInDemo } = useAuth();
+  const { demoEmail, demoPassword, signIn, signInDemo } = useAuth();
   const [email, setEmail] = useState(demoEmail);
   const [password, setPassword] = useState(demoPassword);
   const [securePassword, setSecurePassword] = useState(true);
   const [error, setError] = useState('');
-
-  useEffect(() => {
-    if (rootNavigationState?.key && currentUser) {
-      router.replace('/PlayerDashboard');
-    }
-  }, [currentUser, rootNavigationState?.key, router]);
 
   const handleLogin = () => {
     const result = signIn(email, password);
@@ -42,12 +35,10 @@ export default function LoginScreen() {
     }
 
     setError('');
-    router.replace('/PlayerDashboard');
   };
 
   const handleDemo = () => {
     signInDemo();
-    router.replace('/PlayerDashboard');
   };
 
   return (

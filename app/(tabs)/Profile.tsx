@@ -43,7 +43,6 @@ export default function ProfilePage() {
 
   const handleSignOut = () => {
     signOut();
-    router.replace('/');
   };
 
   const name = currentUser?.name ?? defaultPlayerProfile.name;

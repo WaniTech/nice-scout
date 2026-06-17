@@ -1,8 +1,8 @@
 import { colors } from '@/constants/playerPlatform';
 import { useAuth } from '@/contexts/AuthContext';
 import { Ionicons } from '@expo/vector-icons';
-import { Tabs, useRootNavigationState, useRouter } from 'expo-router';
-import React, { useEffect } from 'react';
+import { Tabs } from 'expo-router';
+import React from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
@@ -16,15 +16,7 @@ function TabIcon({ name, color, focused }: { name: IconName; color: string; focu
 }
 
 export default function TabsLayout() {
-  const router = useRouter();
-  const rootNavigationState = useRootNavigationState();
   const { currentUser } = useAuth();
-
-  useEffect(() => {
-    if (rootNavigationState?.key && !currentUser) {
-      router.replace('/');
-    }
-  }, [currentUser, rootNavigationState?.key, router]);
 
   if (!currentUser) {
     return (

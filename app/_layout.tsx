@@ -1,4 +1,4 @@
-import { AuthProvider } from '@/contexts/AuthContext';
+import { AuthProvider, useAuth } from '@/contexts/AuthContext';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
@@ -23,17 +23,42 @@ export default function RootLayout() {
 
   return (
     <AuthProvider>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack
-          screenOptions={{
-            headerShown: false,
-            contentStyle: {
-              backgroundColor: '#F5F7F0',
-            },
-          }}
-        />
-        <StatusBar style="dark" />
-      </ThemeProvider>
+      <RootNavigator colorScheme={colorScheme} />
     </AuthProvider>
+  );
+}
+
+function RootNavigator({ colorScheme }: { colorScheme: ReturnType<typeof useColorScheme> }) {
+  const { currentUser } = useAuth();
+  const isSignedIn = Boolean(currentUser);
+
+  return (
+    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: {
+            backgroundColor: '#F5F7F0',
+          },
+        }}
+      >
+        <Stack.Protected guard={!isSignedIn}>
+          <Stack.Screen name="index" />
+          <Stack.Screen name="CreateAccount" />
+        </Stack.Protected>
+        <Stack.Protected guard={isSignedIn}>
+          <Stack.Screen name="(tabs)" />
+          <Stack.Screen name="JobDetail" />
+          <Stack.Screen name="MessageDetail" />
+          <Stack.Screen name="PlayerMatch" />
+          <Stack.Screen name="Profile/HiddenCriteria" />
+          <Stack.Screen name="Profile/JobPreferences" />
+          <Stack.Screen name="Profile/Qualifications" />
+          <Stack.Screen name="Profile/ReadyToWork" />
+        </Stack.Protected>
+        <Stack.Screen name="+not-found" />
+      </Stack>
+      <StatusBar style="dark" />
+    </ThemeProvider>
   );
 }
